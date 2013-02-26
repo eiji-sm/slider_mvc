@@ -1,0 +1,40 @@
+doctype 5
+html lang="ja"
+  head
+    meta charset="utf-8"
+    title Slider MVC
+
+    link rel="stylesheet" href="css/raphaelicons.css" media="screen"
+    link rel="stylesheet" href="css/common.css" media="screen"
+
+    script src="js/lib/modernizr.js"
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+    script src="js/lib/lodash.min.js"
+    script src="js/lib/backbone-min.js"
+    script src="js/demodata.js"
+    script src="js/backbone-slider.js"
+
+  body
+    #wrapper
+      header
+        h1 Backbone.js Demo
+      section#mainSlider
+        ul.slideContainer
+          script#tmp_slideContent type="text/template"
+            <% _.each(len, function (i) { %>
+              <li class="slideContent"><img src="image/<%= image[i].url %>"></li>
+            <% }); %>
+        .arrows
+          span.icon.arrowLeft = '<'
+          span.icon.arrowRight = '='
+        nav.slideNavi
+          ul
+            script#tmp_slideNaviList type="text/template"
+              <% _.each(len, function (i) { %>
+                <li class="slideNaviList<% if (i === 0) {　%> ac <% } %>"><img src="image/<%= image[i].url %>" width="110"></li>
+              <% }); %>
+      section#mainContent
+        .slideDescription.ac
+          script#tmp_slideDescription type="text/template"
+            h2 <%= h2 %>
+            p <%= p %>

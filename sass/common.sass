@@ -1,0 +1,103 @@
+@import "compass/css3"
+
+/* Reset Style */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, small
+  display: block
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td,
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, small
+  margin: 0
+  padding: 0
+body
+  text-align: left
+  line-height: 18px
+  background-color: #333
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+  -webkit-text-size-adjust: none
+table
+  border-collapse: collapse
+  border-spacing: 0px
+img
+  border: none
+  line-hegiht: 0px
+  letter-spacing: 0px
+a
+  text-decoration: none
+  color: #000
+ul
+  list-style-type: none
+
+// common Class
+.icon
+  color: #fff
+
+// index ID
+#wrapper
+  width: 1000px
+  margin: 0 auto
+  h1
+    margin: 40px 0px
+    color: #fff
+    letter-spacing: 0.2em
+
+#mainSlider
+  overflow: hidden
+  position: relative
+  float: left
+  width: 640px
+  height: 627px
+  .slideContainer
+    width: 3200px
+    height: 427px
+    .slideContent
+      float: left
+      white-space: nowrap
+      width: 640px
+      height: 427px
+  .arrows
+    position: absolute
+    top:  160px
+    width: 100%
+    .arrowLeft, .arrowRight
+      display: none
+      opacity: 0.6
+      font-size: 5em
+      +text-shadow(1px 1px 9px #666)
+      cursor: pointer
+      &:hover
+        opacity: 1.0
+    .arrowLeft
+      float: left
+      margin-left: 10px
+    .arrowRight
+      float: right
+      margin-right: 10px
+    .ac
+      display: block
+  .slideNavi
+    .slideNaviList
+      float: left
+      width: 110px
+      height: 73px
+      margin: 15px 5px 0 5px
+      border: 4px solid #333
+      cursor: pointer
+      +text-shadow(1px 1px 9px #666)
+      +border-radius(50em)
+    img
+      +border-radius(50em)
+    .ac
+      border: 4px solid #fff
+
+#mainContent
+  float: left
+  width: 320px
+  padding: 0 20px
+  color: #fff
+  .slideDescription
+    display: none
+  .ac
+    display: block
+  h2
+    margin: 20px 0
+  p
+    line-height: 30px

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Slider MVC</title>
+    <link href="css/raphaelicons.css" media="screen" rel="stylesheet" />
+    <link href="css/common.css" media="screen" rel="stylesheet" />
+    <script src="js/lib/modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/lib/lodash.min.js"></script>
+    <script src="js/lib/backbone-min.js"></script>
+    <script src="js/demodata.js"></script>
+    <script src="js/backbone-slider.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>Backbone.js Demo</h1>
+      </header>
+      <section id="mainSlider">
+        <ul class="slideContainer">
+          <script id="tmp_slideContent" type="text/template"><% _.each(len, function (i) { %><li class="slideContent"><img src="image/<%= image[i].url %>"></li><% }); %></script>
+        </ul>
+        <div class="arrows">
+          <span class="icon arrowLeft">&lt;</span><span class="icon arrowRight">=</span>
+        </div>
+        <nav class="slideNavi">
+          <ul>
+            <script id="tmp_slideNaviList" type="text/template"><% _.each(len, function (i) { %><li class="slideNaviList<% if (i === 0) {　%> ac <% } %>"><img src="image/<%= image[i].url %>" width="110"></li><% }); %></script>
+          </ul>
+        </nav>
+      </section>
+      <section id="mainContent">
+        <div class="slideDescription ac">
+          <script id="tmp_slideDescription" type="text/template">
+            <h2><%= h2 %></h2>
+            <p><%= p %></p>
+          </script>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

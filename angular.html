@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>Slider MVC</title>
+    <link rel="stylesheet" href="css/raphaelicons.css" media="screen">
+    <link rel="stylesheet" href="css/common.css" media="screen">
+    <script src="js/lib/modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/demodata.js"></script>
+    <script src="js/angular-slider.js"></script>
+  </head>
+  <body>
+    <div id="wrapper" ng-controller="mainCtrl">
+      <header>
+        <h1>Angular Demo</h1>
+      </header>
+      <section id="mainSlider">
+        <ul class="slideContainer">
+          <li ng-repeat="number in images" class="slideContent"><img src="image/{{data[number].url}}" width="640"></li>
+        </ul>
+        <div class="arrows"><span ng-click="slide('left')" ng-class="isFirst()" class="icon arrowLeft"><</span><span ng-click="slide('right')" ng-class="isLast()" class="icon arrowRight">=</span></div>
+        <nav class="slideNavi">
+          <ul>
+            <li ng-repeat="number in images" ng-class="isNumber(number)" ng-click="slide(number)" class="slideNaviList"><img src="image/{{data[number].url}}" width="110"></li>
+          </ul>
+        </nav>
+      </section>
+      <section id="mainContent">
+        <div class="slideDescription ac">
+          <h2>{{data[slideNumber - 1].title}}</h2>
+          <p>{{data[slideNumber - 1].description}}</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

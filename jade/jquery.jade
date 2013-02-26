@@ -1,0 +1,63 @@
+!!!
+html(lang="ja")
+
+  head
+    meta(charset="utf-8")
+    title Slider MVC
+
+    link(rel="stylesheet", href="css/raphaelicons.css", media="screen")
+    link(rel="stylesheet", href="css/common.css", media="screen")
+
+    script(src="js/lib/modernizr.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
+    script(src="js/demodata.js")
+    script(src="js/jquery-slider.js")
+
+  body
+    #wrapper
+      header
+        h1 jQuery Demo
+      section#mainSlider
+        ul.slideContainer
+          li.slideContent
+            img(src="image/slide_content_01.jpg")
+          li.slideContent
+            img(src="image/slide_content_02.jpg")
+          li.slideContent
+            img(src="image/slide_content_03.jpg")
+          li.slideContent
+            img(src="image/slide_content_04.jpg")
+          li.slideContent
+            img(src="image/slide_content_05.jpg")
+        .arrows
+          span.icon.arrowLeft <
+          span.icon.arrowRight =
+        nav.slideNavi
+          ul
+            li.slideNaviList.ac
+              img(src="image/slide_content_01.jpg", width="110")
+            li.slideNaviList
+              img(src="image/slide_content_02.jpg", width="110")
+            li.slideNaviList
+              img(src="image/slide_content_03.jpg", width="110")
+            li.slideNaviList
+              img(src="image/slide_content_04.jpg", width="110")
+            li.slideNaviList
+              img(src="image/slide_content_05.jpg", width="110")
+      section#mainContent
+        .slideDescription.ac
+          h2 jQuery
+          p jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.
+        .slideDescription
+          h2 AngularJS
+          p HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.
+        .slideDescription
+          h2 BACKBONE.JS
+          p Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
+        .slideDescription
+          h2 Spine.js
+          p Spine is a lightweight framework for building JavaScript web applications. Spine gives you an MVC structure and then gets out of your way, allowing you to concentrate on the fun stuff, building awesome web applications.
+        .slideDescription
+          h2 Flight.js
+          p Flight is a lightweight, component-based JavaScript framework that maps behavior to DOM nodes. Twitter uses it for their web applications. By way of example, we've included a simple email client demo (browse the source) built over the Flight framework.
+
