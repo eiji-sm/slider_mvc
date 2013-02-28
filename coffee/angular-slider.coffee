@@ -15,10 +15,9 @@ mainCtrl = ($scope)->
   $scope.isLast = ->
     if $scope.slideNumber != $scope.data.length then 'ac'
 
-  slideWidth = 640
-
   $scope.slide = (toContent)->
     if $('.slideContainer', $scope.$slider).hasClass('sliding') then return false
+    slideWidth = 640
     if toContent == 'left'
       slideVlue = "+=#{slideWidth}px"
       --$scope.slideNumber

@@ -5,7 +5,7 @@ $ ->
   slideNaviList = $('.slideNaviList', $mainSlider)
   $slideDescription = $('.slideDescription', '#mainContent')
 
-  slideWidth = $slideContent.width()
+  slideWidth = 640  # $slideContent.width()
   slideLength = $slideContent.length
 
   slideNumber = 1
