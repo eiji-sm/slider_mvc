@@ -20,14 +20,18 @@ html(lang="ja", ng-app)
         h1 Angular Demo
       section#mainSlider
         ul.slideContainer
-          li.slideContent(ng-repeat="number in images")
+          li.slideContent(ng-repeat="number in slideLength")
             img(src="image/{{data[number].url}}", width="640")
         .arrows
-          span.icon.arrowLeft(ng-click="slide('left')", ng-class="isFirst()") <
-          span.icon.arrowRight(ng-click="slide('right')", ng-class="isLast()") =
+          span.icon.arrowLeft(ng-click="decrease('slideNumber')", ng-class="{ac: slideNumber != 1}") <
+          span.icon.arrowRight(ng-click="increase('slideNumber')", ng-class="{ac: slideNumber != 5}") =
         nav.slideNavi
           ul
-            li.slideNaviList(ng-repeat="number in images", ng-class="isNumber(number)", ng-click="slide(number)")
+            li.slideNaviList(
+              ng-repeat="number in slideLength",
+              ng-click="eq('slideNumber', (number + 1))",
+              ng-class="{ac: slideNumber == (number + 1)}"
+            )
               img(src="image/{{data[number].url}}", width="110")
       section#mainContent
         .slideDescription.ac

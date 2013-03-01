@@ -3,30 +3,17 @@ mainCtrl = ($scope)->
   $scope.$content = $('#mainContent')
 
   $scope.slideNumber = 1
-  $scope.isArrowLeft = false
-  $scope.isArrowRight = true
   $scope.data = demoData
-  $scope.images = [0..($scope.data.length - 1)]
+  $scope.slideLength = [0..($scope.data.length - 1)]
 
-  $scope.isNumber = (number)->
-    if $scope.slideNumber == (++number) then 'ac'
-  $scope.isFirst = ->
-    if $scope.slideNumber != 1 then 'ac'
-  $scope.isLast = ->
-    if $scope.slideNumber != $scope.data.length then 'ac'
+  $scope.increase = (model, number = 1)-> $scope[model] += number
+  $scope.decrease = (model, number = 1)-> $scope[model] -= number
+  $scope.eq = (model, number)-> $scope[model] = number
 
   $scope.slide = (toContent)->
     if $('.slideContainer', $scope.$slider).hasClass('sliding') then return false
-    slideWidth = 640
-    if toContent == 'left'
-      slideVlue = "+=#{slideWidth}px"
-      --$scope.slideNumber
-    if toContent == 'right'
-      slideVlue = "-=#{slideWidth}px"
-      ++$scope.slideNumber
-    if $.isNumeric(toContent)
-      slideVlue = "-#{slideWidth * toContent}px"
-      $scope.slideNumber = ++toContent
+    slideWidth = $scope.$slider.find('.slideContent').width()
+    slideVlue = "-#{slideWidth * toContent}px"
     animateStyles =
       marginLeft: slideVlue
     anamateOptions =
@@ -37,3 +24,6 @@ mainCtrl = ($scope)->
     $('.slideContainer', $scope.$slider)
       .addClass('sliding')
       .animate(animateStyles, anamateOptions)
+
+  $scope.$watch 'slideNumber', (newValue, oldValue)->
+    $scope.slide($scope.slideNumber - 1)

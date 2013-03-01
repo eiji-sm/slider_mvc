@@ -6,47 +6,34 @@ mainCtrl = function($scope) {
   $scope.$slider = $('#mainSlider');
   $scope.$content = $('#mainContent');
   $scope.slideNumber = 1;
-  $scope.isArrowLeft = false;
-  $scope.isArrowRight = true;
   $scope.data = demoData;
-  $scope.images = (function() {
+  $scope.slideLength = (function() {
     _results = [];
     for (var _i = 0, _ref = $scope.data.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; 0 <= _ref ? _i++ : _i--){ _results.push(_i); }
     return _results;
   }).apply(this);
-  $scope.isNumber = function(number) {
-    if ($scope.slideNumber === (++number)) {
-      return 'ac';
+  $scope.increase = function(model, number) {
+    if (number == null) {
+      number = 1;
     }
+    return $scope[model] += number;
   };
-  $scope.isFirst = function() {
-    if ($scope.slideNumber !== 1) {
-      return 'ac';
+  $scope.decrease = function(model, number) {
+    if (number == null) {
+      number = 1;
     }
+    return $scope[model] -= number;
   };
-  $scope.isLast = function() {
-    if ($scope.slideNumber !== $scope.data.length) {
-      return 'ac';
-    }
+  $scope.eq = function(model, number) {
+    return $scope[model] = number;
   };
-  return $scope.slide = function(toContent) {
+  $scope.slide = function(toContent) {
     var anamateOptions, animateStyles, slideVlue, slideWidth;
     if ($('.slideContainer', $scope.$slider).hasClass('sliding')) {
       return false;
     }
-    slideWidth = 640;
-    if (toContent === 'left') {
-      slideVlue = "+=" + slideWidth + "px";
-      --$scope.slideNumber;
-    }
-    if (toContent === 'right') {
-      slideVlue = "-=" + slideWidth + "px";
-      ++$scope.slideNumber;
-    }
-    if ($.isNumeric(toContent)) {
-      slideVlue = "-" + (slideWidth * toContent) + "px";
-      $scope.slideNumber = ++toContent;
-    }
+    slideWidth = $scope.$slider.find('.slideContent').width();
+    slideVlue = "-" + (slideWidth * toContent) + "px";
     animateStyles = {
       marginLeft: slideVlue
     };
@@ -59,4 +46,7 @@ mainCtrl = function($scope) {
     };
     return $('.slideContainer', $scope.$slider).addClass('sliding').animate(animateStyles, anamateOptions);
   };
+  return $scope.$watch('slideNumber', function(newValue, oldValue) {
+    return $scope.slide($scope.slideNumber - 1);
+  });
 };
