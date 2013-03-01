@@ -6,6 +6,7 @@ mainCtrl = function($scope) {
   $scope.$slider = $('#mainSlider');
   $scope.$content = $('#mainContent');
   $scope.slideNumber = 1;
+  $scope.isProcessing = false;
   $scope.data = demoData;
   $scope.slideLength = (function() {
     _results = [];
@@ -16,22 +17,29 @@ mainCtrl = function($scope) {
     if (number == null) {
       number = 1;
     }
-    return $scope[model] += number;
+    if (!$scope.isProcessing) {
+      return $scope[model] += number;
+    }
   };
   $scope.decrease = function(model, number) {
     if (number == null) {
       number = 1;
     }
-    return $scope[model] -= number;
+    if (!$scope.isProcessing) {
+      return $scope[model] -= number;
+    }
   };
   $scope.eq = function(model, number) {
-    return $scope[model] = number;
+    if (!$scope.isProcessing) {
+      return $scope[model] = number;
+    }
   };
   $scope.slide = function(toContent) {
     var anamateOptions, animateStyles, slideVlue, slideWidth;
-    if ($('.slideContainer', $scope.$slider).hasClass('sliding')) {
+    if ($scope.isProcessing) {
       return false;
     }
+    $scope.isProcessing = true;
     slideWidth = $scope.$slider.find('.slideContent').width();
     slideVlue = "-" + (slideWidth * toContent) + "px";
     animateStyles = {
@@ -41,12 +49,12 @@ mainCtrl = function($scope) {
       duration: 'normal',
       easing: 'swing',
       complete: function() {
-        return $(this).removeClass('sliding');
+        return $scope.isProcessing = false;
       }
     };
-    return $('.slideContainer', $scope.$slider).addClass('sliding').animate(animateStyles, anamateOptions);
+    return $('.slideContainer', $scope.$slider).animate(animateStyles, anamateOptions);
   };
   return $scope.$watch('slideNumber', function(newValue, oldValue) {
-    return $scope.slide($scope.slideNumber - 1);
+    return $scope.slide(newValue - 1);
   });
 };
