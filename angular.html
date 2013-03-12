@@ -23,7 +23,7 @@
         <div class="arrows"><span ng-click="decrease('slideNumber')" ng-class="{ac: slideNumber != 0}" class="icon arrowLeft"><</span><span ng-click="increase('slideNumber')" ng-class="{ac: slideNumber != dataLength}" class="icon arrowRight">=</span></div>
         <nav class="slideNavi">
           <ul>
-            <li ng-repeat="number in dataNumbers" ng-click="eq('slideNumber', number)" ng-class="{ac: slideNumber == number}" class="slideNaviList"><img src="image/{{dataList[number].url}}" width="110"></li>
+            <li ng-repeat="number in dataNumbers" ng-click="eq('slideNumber', number)" ng-class="{ac: slideNumber == number}" class="slideNaviList"><img ng-src="image/{{dataList[number].url}}" width="110"></li>
           </ul>
         </nav>
       </section>

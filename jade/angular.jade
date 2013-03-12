@@ -32,7 +32,7 @@ html(lang="ja", ng-app)
               ng-click="eq('slideNumber', number)",
               ng-class="{ac: slideNumber == number}"
             )
-              img(src="image/{{dataList[number].url}}", width="110")
+              img(ng-src="image/{{dataList[number].url}}", width="110")
       section#mainContent
         .slideDescription.ac
           h2 {{dataList[slideNumber].title}}
