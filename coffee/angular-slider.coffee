@@ -1,29 +1,28 @@
-mainCtrl = ($scope)->
-  $scope.$slider = $('#mainSlider')
-  $scope.$content = $('#mainContent')
+mainCtrl = ($scope, $rootElement, $http)->
+  $scope.slideNumber = 0
+  $scope.dataList = demoData  # $http().success()
+  $scope.dataLength = $scope.dataList.length - 1
+  $scope.dataNumbers = [0..$scope.dataLength]
 
-  $scope.slideNumber = 1
-  $scope.isProcessing = false
-  $scope.data = demoData
-  $scope.slideLength = [0..($scope.data.length - 1)]
+  _isProcessing = false
 
-  $scope.increase = (model, number = 1)-> if !$scope.isProcessing then $scope[model] += number
-  $scope.decrease = (model, number = 1)-> if !$scope.isProcessing then $scope[model] -= number
-  $scope.eq = (model, number)-> if !$scope.isProcessing then $scope[model] = number
+  $scope.increase = (model, number = 1)-> if !_isProcessing then $scope[model] += number
+  $scope.decrease = (model, number = 1)-> if !_isProcessing then $scope[model] -= number
+  $scope.eq = (model, number)-> if !_isProcessing then $scope[model] = number
 
   $scope.slide = (toContent)->
-    if $scope.isProcessing then return false
-    $scope.isProcessing = true
-    slideWidth = $scope.$slider.find('.slideContent').width()
-    slideVlue = "-#{slideWidth * toContent}px"
-    animateStyles =
-      marginLeft: slideVlue
-    anamateOptions =
+    if _isProcessing then return
+    _isProcessing = true
+    _slideWidth = $('.slideContent', $rootElement).width()
+    _animateStyles =
+      marginLeft: "-#{_slideWidth * toContent}px"
+    _anamateOptions =
       duration: 'normal'
       easing: 'swing'
       complete: ->
-        $scope.isProcessing = false
-    $('.slideContainer', $scope.$slider).animate(animateStyles, anamateOptions)
+        _isProcessing = false
+    $('.slideContainer', $rootElement).animate(_animateStyles, _anamateOptions)
 
-  $scope.$watch 'slideNumber', (newValue, oldValue)->
-    $scope.slide(newValue - 1)
+  $scope.$watch 'slideNumber', (newVal, oldVal)->
+    if newVal == oldVal then return
+    $scope.slide(newVal)

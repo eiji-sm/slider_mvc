@@ -20,20 +20,20 @@ html(lang="ja", ng-app)
         h1 Angular Demo
       section#mainSlider
         ul.slideContainer
-          li.slideContent(ng-repeat="number in slideLength")
-            img(src="image/{{data[number].url}}", width="640")
+          li.slideContent(ng-repeat="data in dataList")
+            img(ng-src="image/{{data.url}}", width="640")
         .arrows
-          span.icon.arrowLeft(ng-click="decrease('slideNumber')", ng-class="{ac: slideNumber != 1}") <
-          span.icon.arrowRight(ng-click="increase('slideNumber')", ng-class="{ac: slideNumber != 5}") =
+          span.icon.arrowLeft(ng-click="decrease('slideNumber')", ng-class="{ac: slideNumber != 0}") <
+          span.icon.arrowRight(ng-click="increase('slideNumber')", ng-class="{ac: slideNumber != dataLength}") =
         nav.slideNavi
           ul
             li.slideNaviList(
-              ng-repeat="number in slideLength",
-              ng-click="eq('slideNumber', (number + 1))",
-              ng-class="{ac: slideNumber == (number + 1)}"
+              ng-repeat="number in dataNumbers",
+              ng-click="eq('slideNumber', number)",
+              ng-class="{ac: slideNumber == number}"
             )
-              img(src="image/{{data[number].url}}", width="110")
+              img(src="image/{{dataList[number].url}}", width="110")
       section#mainContent
         .slideDescription.ac
-          h2 {{data[slideNumber - 1].title}}
-          p {{data[slideNumber - 1].description}}
+          h2 {{dataList[slideNumber].title}}
+          p {{dataList[slideNumber].description}}

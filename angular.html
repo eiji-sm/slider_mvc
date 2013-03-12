@@ -18,19 +18,19 @@
       </header>
       <section id="mainSlider">
         <ul class="slideContainer">
-          <li ng-repeat="number in slideLength" class="slideContent"><img src="image/{{data[number].url}}" width="640"></li>
+          <li ng-repeat="data in dataList" class="slideContent"><img ng-src="image/{{data.url}}" width="640"></li>
         </ul>
-        <div class="arrows"><span ng-click="decrease('slideNumber')" ng-class="{ac: slideNumber != 1}" class="icon arrowLeft"><</span><span ng-click="increase('slideNumber')" ng-class="{ac: slideNumber != 5}" class="icon arrowRight">=</span></div>
+        <div class="arrows"><span ng-click="decrease('slideNumber')" ng-class="{ac: slideNumber != 0}" class="icon arrowLeft"><</span><span ng-click="increase('slideNumber')" ng-class="{ac: slideNumber != dataLength}" class="icon arrowRight">=</span></div>
         <nav class="slideNavi">
           <ul>
-            <li ng-repeat="number in slideLength" ng-click="eq('slideNumber', (number + 1))" ng-class="{ac: slideNumber == (number + 1)}" class="slideNaviList"><img src="image/{{data[number].url}}" width="110"></li>
+            <li ng-repeat="number in dataNumbers" ng-click="eq('slideNumber', number)" ng-class="{ac: slideNumber == number}" class="slideNaviList"><img src="image/{{dataList[number].url}}" width="110"></li>
           </ul>
         </nav>
       </section>
       <section id="mainContent">
         <div class="slideDescription ac">
-          <h2>{{data[slideNumber - 1].title}}</h2>
-          <p>{{data[slideNumber - 1].description}}</p>
+          <h2>{{dataList[slideNumber].title}}</h2>
+          <p>{{dataList[slideNumber].description}}</p>
         </div>
       </section>
     </div>
