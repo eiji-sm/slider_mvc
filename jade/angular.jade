@@ -11,7 +11,6 @@ html(lang="ja", ng-app)
     script(src="js/lib/modernizr.js")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
     script(src="js/lib/angular.min.js")
-    script(src="js/demodata.js")
     script(src="js/angular-slider.js")
 
   body
@@ -23,17 +22,17 @@ html(lang="ja", ng-app)
           li.slideContent(ng-repeat="data in dataList")
             img(ng-src="image/{{data.url}}", width="640")
         .arrows
-          span.icon.arrowLeft(ng-click="decrease('slideNumber')", ng-class="{ac: slideNumber != 0}") <
-          span.icon.arrowRight(ng-click="increase('slideNumber')", ng-class="{ac: slideNumber != dataLength}") =
+          span.icon.arrowLeft(ng-click="slideNumber.decrease()", ng-class="{ac: slideNumber.val != 0}") <
+          span.icon.arrowRight(ng-click="slideNumber.increase()", ng-class="{ac: slideNumber.val != dataLength}") =
         nav.slideNavi
           ul
             li.slideNaviList(
               ng-repeat="number in dataNumbers",
-              ng-click="eq('slideNumber', number)",
-              ng-class="{ac: slideNumber == number}"
+              ng-click="slideNumber.set(number)",
+              ng-class="{ac: slideNumber.val == number}"
             )
               img(ng-src="image/{{dataList[number].url}}", width="110")
       section#mainContent
         .slideDescription.ac
-          h2 {{dataList[slideNumber].title}}
-          p {{dataList[slideNumber].description}}
+          h2 {{dataList[slideNumber.val].title}}
+          p {{dataList[slideNumber.val].description}}

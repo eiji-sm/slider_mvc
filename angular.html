@@ -8,7 +8,6 @@
     <script src="js/lib/modernizr.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="js/lib/angular.min.js"></script>
-    <script src="js/demodata.js"></script>
     <script src="js/angular-slider.js"></script>
   </head>
   <body>
@@ -20,17 +19,17 @@
         <ul class="slideContainer">
           <li ng-repeat="data in dataList" class="slideContent"><img ng-src="image/{{data.url}}" width="640"></li>
         </ul>
-        <div class="arrows"><span ng-click="decrease('slideNumber')" ng-class="{ac: slideNumber != 0}" class="icon arrowLeft"><</span><span ng-click="increase('slideNumber')" ng-class="{ac: slideNumber != dataLength}" class="icon arrowRight">=</span></div>
+        <div class="arrows"><span ng-click="slideNumber.decrease()" ng-class="{ac: slideNumber.val != 0}" class="icon arrowLeft"><</span><span ng-click="slideNumber.increase()" ng-class="{ac: slideNumber.val != dataLength}" class="icon arrowRight">=</span></div>
         <nav class="slideNavi">
           <ul>
-            <li ng-repeat="number in dataNumbers" ng-click="eq('slideNumber', number)" ng-class="{ac: slideNumber == number}" class="slideNaviList"><img ng-src="image/{{dataList[number].url}}" width="110"></li>
+            <li ng-repeat="number in dataNumbers" ng-click="slideNumber.set(number)" ng-class="{ac: slideNumber.val == number}" class="slideNaviList"><img ng-src="image/{{dataList[number].url}}" width="110"></li>
           </ul>
         </nav>
       </section>
       <section id="mainContent">
         <div class="slideDescription ac">
-          <h2>{{dataList[slideNumber].title}}</h2>
-          <p>{{dataList[slideNumber].description}}</p>
+          <h2>{{dataList[slideNumber.val].title}}</h2>
+          <p>{{dataList[slideNumber.val].description}}</p>
         </div>
       </section>
     </div>
